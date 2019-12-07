@@ -17,8 +17,8 @@ jobs:
     runs-on: macos-latest
     steps:
       - name: run multi-line script
-      env:
-        EXAMPLE_VAR: hello action
-      run: |
-        echo "Hello action"
-        echo $EXAMPLE_VAR
+        env:
+          EXAMPLE_VAR: hello action
+        run: |
+          echo "Hello action"
+          echo $EXAMPLE_VAR
