@@ -1,0 +1,24 @@
+name: Hello Action
+on: 
+  push:
+    branches:
+      - master
+jobs:
+  my_first_job:
+    name: my first job
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+      - name: echo helloaction
+        run: echo "hello Action"
+  my_second_job:
+    name: my second job
+    runs-on: macos-latest
+    steps:
+      - name: run multi-line script
+      env:
+        EXAMPLE_VAR: hello action
+      run: |
+        echo "Hello action"
+        echo $EXAMPLE_VAR
