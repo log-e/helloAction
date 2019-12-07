@@ -10,14 +10,23 @@ jobs:
     steps:
       - name: setup-cpp
         run: |
-          sudo apt install build-essential cmake
+          sudo apt install build-essential cmake lcov
       - name: checkout
         uses: actions/checkout@master
       - name: build cpp
         run:  |
           cmake -H. -Bbuild
-          cmake --build build -- -j 4
+          cmake --build build -- -j${nproc}
       - name: execute program
         run: |
           cd build
           ./helloaction
+      - name: lcov
+        run: |
+          cd build
+          lcov -c -d CMakeFiles -o cov.info
+      - name: upload to codecov
+        uses: codecov/codecov-action@master
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: build/cov.info
