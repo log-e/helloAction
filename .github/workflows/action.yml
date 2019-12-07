@@ -10,10 +10,14 @@ jobs:
     steps:
       - name: setup-cpp
         run: |
-          sudo apt install build-essential
+          sudo apt install build-essential cmake
       - name: checkout
         uses: actions/checkout@master
       - name: build cpp
-        run:  sh build.sh
+        run:  |
+          cmake -H. -Bbuild
+          cmake --build build -- -j 4
       - name: execute program
-        run: ./main
+        run: |
+          cd build
+          ./helloaction
