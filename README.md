@@ -1,4 +1,6 @@
 [![codecov](https://codecov.io/gh/log-e/helloAction/branch/master/graph/badge.svg)](https://codecov.io/gh/log-e/helloAction)
+[![Actions Status](https://github.com/log-e/helloAction/workflows/Hello%20Action/badge.svg)](https://github.com/log-e/helloActions/actions)
+
 ## Description
 This project is just for my test fo github actions
 
