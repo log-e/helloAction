@@ -1,12 +1,17 @@
 name: Hello Action
+
 on: 
   push:
     branches:
       - master
+
 jobs:
   build:
     name: build
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
     steps:
       - name: setup-cpp
         run: |
