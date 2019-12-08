@@ -17,3 +17,6 @@ build cpp program using cmake
 
 ### tag v5.0
 build,execute,coverage
+
+### tag v6.0
+add run-on macos
