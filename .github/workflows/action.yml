@@ -32,6 +32,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: build/cov.info
+          name: ubuntu
   build_macos:
     name: build macos
     runs-on: macos-latest
@@ -58,3 +59,4 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           file: build/cov.info
+          name: macos
