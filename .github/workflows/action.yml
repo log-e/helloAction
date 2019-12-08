@@ -6,12 +6,9 @@ on:
       - master
 
 jobs:
-  build:
-    name: build
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macos-latest]
+  build_ubuntu:
+    name: build ubuntu
+    runs-on: ubuntu-latest
     steps:
       - name: setup-cpp
         run: |
@@ -22,6 +19,32 @@ jobs:
         run:  |
           cmake -H. -Bbuild
           cmake --build build -- -j${nproc}
+      - name: execute program
+        run: |
+          cd build
+          ./helloaction
+      - name: lcov
+        run: |
+          cd build
+          lcov -c -d CMakeFiles -o cov.info
+      - name: upload to codecov
+        uses: codecov/codecov-action@master
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: build/cov.info
+  build_macos:
+    name: build macos
+    runs-on: macos-latest
+    steps:
+      - name: setup-cpp
+        run: |
+          sudo brew install cmake lcov
+      - name: checkout
+        uses: actions/checkout@master
+      - name: build cpp
+        run:  |
+          cmake -H. -Bbuild
+          cmake --build build -- -j 4
       - name: execute program
         run: |
           cd build
